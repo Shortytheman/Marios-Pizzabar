@@ -41,9 +41,16 @@ public void lavPizza(){
   // EDDIE LAV NOGLE PIZZAER!
 }
 
+
+public void printMenukort(){
+  for (Pizza s : menuKort) {
+    System.out.println(s);
+  }
+}
+
 public static void main(String[] args){
   Main main = new Main();
   main.lavPizza();
-  System.out.println(main.menuKort);
+  main.printMenukort();
   }
 }
