@@ -1,8 +1,13 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
   ArrayList<Pizza> menuKort = new ArrayList<>();
-  ArrayList<String> ingredienser = new ArrayList<>();
+  ArrayList <Pizza> bestillinger = new ArrayList<>();
+  Boolean programIsRunning = true;
+  Scanner scanner = new Scanner(System.in);
+  int pristotal;
+
 
 public void lavPizza(){
   menuKort.add(new Pizza(1,"Vesuvio",new String[]{"Tomatsauce","Ost", "Skinke", "Oregano"},57));
@@ -40,6 +45,42 @@ public void lavPizza(){
   menuKort.add(new Pizza(33,"Mexico",new String[]{"Tomatsauce","Ost", "Oksekød", "Jalapenos", "Nachos", "Guacamole","Chili","Kaktus"},70));
 }
 
+public void tagImodBestilling(){
+
+  System.out.println("Indtast nummeret på den pizza der bliver bestilt: ");
+  int pizzaNummer = 0;
+  int i = 1;
+
+  do {
+    while(!scanner.hasNextInt()){
+      if (scanner.nextLine().equalsIgnoreCase("menukort"))
+        printMenukort();
+      if (scanner.nextLine().equalsIgnoreCase("slut")) {
+        System.out.println("\n\nOrdren er slut, den har fået ordrenummer: " + i);
+        System.out.println("Ordre nummer " + i + " indeholder: ");
+      for (Pizza a : bestillinger)
+        System.out.println(a);
+        System.out.println("ialt pris: " + pristotal);
+        bestillinger.clear();
+        pristotal = 0;
+        i++;
+      }
+    }
+    if(scanner.hasNextInt()) {
+      pizzaNummer = scanner.nextInt();
+    }
+    if (pizzaNummer < 34 && pizzaNummer > 0) {
+      System.out.println(menuKort.get(pizzaNummer - 1));
+      bestillinger.add(menuKort.get(pizzaNummer - 1));
+      pristotal += menuKort.get(pizzaNummer - 1).pris;
+      System.out.print("indtast nummeret på næste pizza, indtast slut for at afslutte ordren: ");
+    }
+    else {
+      System.out.println("forkert indtastning, vælg et nummer fra menuen");
+    }
+  }
+  while(pizzaNummer < 34 && pizzaNummer > 0);
+}
 
 public void printMenukort(){
   for (Pizza s : menuKort) {
@@ -51,5 +92,9 @@ public static void main(String[] args){
   Main main = new Main();
   main.lavPizza();
   main.printMenukort();
+
+  while (main.programIsRunning) {
+    main.tagImodBestilling();
+  }
   }
 }
