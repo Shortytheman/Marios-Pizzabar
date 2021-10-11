@@ -25,7 +25,7 @@ public void lavPizza(){
   menuKort.add(new Pizza(18,"Peach",new String[]{"Tomatsauce","Ost", "Serano Skinke", "Rødkål", "Rød Peber", "Radiser"},64));
   menuKort.add(new Pizza(19,"Daisy",new String[]{"Tomatsauce","Ost", "Kylling", "Majs", "Gul Peber", "Gulerødder"},63));
   menuKort.add(new Pizza(20,"Toad",new String[]{"Tomatsauce","Mozzarella", "Champignon", "Karl Johan", "Kantarel", "Ægte Hummer Skørhat"},100));
-  menuKort.add(new Pizza(21,"Donkey Kong ",new String[]{"Tomatsauce","Ost", "Kebab", "Jordskokker", "Løg", "Skorzonerrod"},90));
+  menuKort.add(new Pizza(21,"Donkey Kong",new String[]{"Tomatsauce","Ost", "Kebab", "Jordskokker", "Løg", "Skorzonerrod"},90));
   menuKort.add(new Pizza(22,"Yoshi",new String[]{"Tomatsauce","Ost", "Kylling", "Squash", "Grønne Asparges", "Ærter", "Grønkål"},62));
   menuKort.add(new Pizza(23,"Baby Mario",new String[]{"Tomatsauce","Ost", "Pepperoni", "Rødbede", "Rødløg"},60));
   menuKort.add(new Pizza(24,"Baby Luigi",new String[]{"Tomatsauce","Ost", "Kylling", "Spinat", "Squash"},62));
@@ -38,7 +38,6 @@ public void lavPizza(){
   menuKort.add(new Pizza(31,"El Mariacho",new String[]{"Tomatsauce","Ost", "Kebab", "Artiskokker", "Tomat", "Agurk","Peberfrugt", "Oregano"},62));
   menuKort.add(new Pizza(32,"Ensalda",new String[]{"Tomatsauce","Ost", "Kylling", "Salat", "Tomat", "Agurk","Peberfrugt", "Massere af dressing"},64));
   menuKort.add(new Pizza(33,"Mexico",new String[]{"Tomatsauce","Ost", "Oksekød", "Jalapenos", "Nachos", "Guacamole","Chili","Kaktus"},70));
-  // EDDIE LAV NOGLE PIZZAER!
 }
 
 

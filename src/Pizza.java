@@ -16,20 +16,38 @@ public class Pizza {
   }
 
   public String toString(){
-    if (this.navn.length() == 4)
+    if (this.navn.length() == 4 && this.nummer < 10)
+      return this.nummer + " " + this.navn + "        " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
+    if (this.navn.length() == 4 && this.nummer > 10)
       return this.nummer + " " + this.navn + "       " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
-    if (this.navn.length() == 5)
+    if (this.navn.length() == 5 && this.nummer < 10)
+      return this.nummer + " " + this.navn + "       " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
+    if (this.navn.length() == 5 && this.nummer > 10)
       return this.nummer + " " + this.navn + "      " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
-    if (this.navn.length() == 6)
+    if (this.navn.length() == 6 && this.nummer < 10)
+      return this.nummer + " " + this.navn + "      " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
+    if (this.navn.length() == 6 && this.nummer > 10)
       return this.nummer + " " + this.navn + "     " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
-    if (this.navn.length() == 7)
+    if (this.navn.length() == 7 && this.nummer < 10)
+      return this.nummer + " " + this.navn + "     " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
+    if (this.navn.length() == 7 && this.nummer > 10)
       return this.nummer + " " + this.navn + "    " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
-    if (this.navn.length() == 8)
+    if (this.navn.length() == 8 && this.nummer < 10)
+      return this.nummer + " " + this.navn + "    " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
+    if (this.navn.length() == 8 && this.nummer > 10)
       return this.nummer + " " + this.navn + "   " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
-    if (this.navn.length() == 9)
+    if (this.navn.length() == 9 && this.nummer < 10)
+      return this.nummer + " " + this.navn + "   " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
+    if (this.navn.length() == 9 && this.nummer > 10)
       return this.nummer + " " + this.navn + "  " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
-    if (this.navn.length() == 10)
+    if (this.navn.length() == 10 && this.nummer < 10)
+      return this.nummer + " " + this.navn + "  " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
+    if (this.navn.length() == 10 && this.nummer > 10)
       return this.nummer + " " + this.navn + " " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
+    if (this.navn.length() == 11 && this.nummer < 10)
+      return this.nummer + " " + this.navn + " " + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
+    if (this.navn.length() == 11 && this.nummer > 10)
+      return this.nummer + " " + this.navn + "" + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
     else
     return this.nummer + " " + this.navn + "  Ingredienser: " + Arrays.toString(ingredienser) + " " + this.pris + " kr.";
 
