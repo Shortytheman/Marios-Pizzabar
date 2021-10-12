@@ -42,7 +42,8 @@ public void lavPizza(){
   menuKort.add(new Pizza(30,"Con Carne",new String[]{"Tomatsauce","Ost", "Oksekød", "Kebab", "Kylling", "Pepperoni","Peberfrugt"},68));
   menuKort.add(new Pizza(31,"El Mariacho",new String[]{"Tomatsauce","Ost", "Kebab", "Artiskokker", "Tomat", "Agurk","Peberfrugt", "Oregano"},62));
   menuKort.add(new Pizza(32,"Ensalda",new String[]{"Tomatsauce","Ost", "Kylling", "Salat", "Tomat", "Agurk","Peberfrugt", "Massere af dressing"},64));
-  menuKort.add(new Pizza(33,"Mexico",new String[]{"Tomatsauce","Ost", "Oksekød", "Jalapenos", "Nachos", "Guacamole","Chili","Kaktus"},70));
+  menuKort.add(new Pizza(33,"Mexico",new String[]{"Tomatsauce","Ost", "Oksekød", "Jalapenos", "Nachos", "Guacamole",
+          "Chili","Kaktus"},70));
 }
 
 public void tagImodBestilling(){
