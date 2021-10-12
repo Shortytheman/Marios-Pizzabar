@@ -7,6 +7,7 @@ public class Main {
   Boolean programIsRunning = true;
   Scanner scanner = new Scanner(System.in);
   int pristotal;
+  int regnskab;
 
 
 public void lavPizza(){
@@ -65,6 +66,9 @@ public void tagImodBestilling(){
         pristotal = 0;
         i++;
       }
+      if (scanner.nextLine().equalsIgnoreCase("regnskab")){
+        System.out.println("Ialt er der blevet solgt pizza for: " + regnskab + " kroner idag.");
+      }
     }
     if(scanner.hasNextInt()) {
       pizzaNummer = scanner.nextInt();
@@ -73,6 +77,7 @@ public void tagImodBestilling(){
       System.out.println(menuKort.get(pizzaNummer - 1));
       bestillinger.add(menuKort.get(pizzaNummer - 1));
       pristotal += menuKort.get(pizzaNummer - 1).pris;
+      regnskab += menuKort.get(pizzaNummer - 1).pris;
       System.out.print("indtast nummeret på næste pizza, indtast slut for at afslutte ordren: ");
     }
     else {
