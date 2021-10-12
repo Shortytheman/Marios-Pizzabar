@@ -5,10 +5,12 @@ import java.util.*;
 public class Main {
   ArrayList<Pizza> menuKort = new ArrayList<>();
   ArrayList <Pizza> bestillinger = new ArrayList<>();
+  ArrayList <Pizza> totalOrdre = new ArrayList<>();
   Boolean programIsRunning = true;
   Scanner scanner = new Scanner(System.in);
   int pristotal;
   int regnskab;
+  int i = 1;
 
 
 public void lavPizza(){
@@ -52,7 +54,6 @@ public void tagImodBestilling(){
 
   System.out.println("Indtast nummeret på den pizza der bliver bestilt: ");
   int pizzaNummer = 0;
-  int i = 1;
 
   do {
     while(!scanner.hasNextInt()){
@@ -62,18 +63,24 @@ public void tagImodBestilling(){
       if (stringInput.equalsIgnoreCase("slut")) {
         System.out.println("\n\nOrdren er slut, den har fået ordrenummer: " + i);
         System.out.println("Ordre nummer " + i + " indeholder: ");
-      for (Pizza a : bestillinger)
+      for (Pizza a : bestillinger) {
         System.out.println(a);
+      }
         System.out.println("ialt pris: " + pristotal + " kroner.");
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Date date = new Date();
         System.out.println("Bestilling modtaget " + dateFormat.format(date));
+        gemBestillinger(bestillinger);
         bestillinger.clear();
         pristotal = 0;
         i++;
       }
       if (stringInput.equalsIgnoreCase("regnskab")){
-        System.out.println("Ialt er der blevet solgt pizza for: " + regnskab + " kroner idag.");
+        System.out.println("I dag er der i alt blevet solgt pizza for: " + regnskab + " kroner'");
+      }
+      if (stringInput.equalsIgnoreCase("total")){
+        for (Pizza s : totalOrdre)
+          System.out.println(s);
       }
     }
     if(scanner.hasNextInt()) {
@@ -93,6 +100,10 @@ public void tagImodBestilling(){
   while(pizzaNummer < 34 && pizzaNummer > 0);
 }
 
+public void gemBestillinger(ArrayList<Pizza> pizza){
+  totalOrdre.addAll(pizza);
+}
+
 public void printMenukort(){
   for (Pizza s : menuKort) {
     System.out.println(s);
@@ -102,7 +113,6 @@ public void printMenukort(){
 public static void main(String[] args){
   Main main = new Main();
   main.lavPizza();
-  main.printMenukort();
 
   while (main.programIsRunning) {
     main.tagImodBestilling();
