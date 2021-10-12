@@ -1,5 +1,6 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Main {
   ArrayList<Pizza> menuKort = new ArrayList<>();
@@ -64,6 +65,9 @@ public void tagImodBestilling(){
       for (Pizza a : bestillinger)
         System.out.println(a);
         System.out.println("ialt pris: " + pristotal);
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        Date date = new Date();
+        System.out.println("Bestilling modtaget " + dateFormat.format(date));
         bestillinger.clear();
         pristotal = 0;
         i++;
