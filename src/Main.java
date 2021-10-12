@@ -64,7 +64,7 @@ public void tagImodBestilling(){
         System.out.println("Ordre nummer " + i + " indeholder: ");
       for (Pizza a : bestillinger)
         System.out.println(a);
-        System.out.println("ialt pris: " + pristotal);
+        System.out.println("ialt pris: " + pristotal + " kroner.");
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Date date = new Date();
         System.out.println("Bestilling modtaget " + dateFormat.format(date));
