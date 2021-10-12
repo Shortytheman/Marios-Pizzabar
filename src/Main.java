@@ -55,9 +55,10 @@ public void tagImodBestilling(){
 
   do {
     while(!scanner.hasNextInt()){
-      if (scanner.nextLine().equalsIgnoreCase("menukort"))
+      String ff = scanner.nextLine();
+      if (ff.equalsIgnoreCase("menukort"))
         printMenukort();
-      if (scanner.nextLine().equalsIgnoreCase("slut")) {
+      if (ff.equalsIgnoreCase("slut")) {
         System.out.println("\n\nOrdren er slut, den har fået ordrenummer: " + i);
         System.out.println("Ordre nummer " + i + " indeholder: ");
       for (Pizza a : bestillinger)
@@ -67,7 +68,7 @@ public void tagImodBestilling(){
         pristotal = 0;
         i++;
       }
-      if (scanner.nextLine().equalsIgnoreCase("regnskab")){
+      if (ff.equalsIgnoreCase("regnskab")){
         System.out.println("Ialt er der blevet solgt pizza for: " + regnskab + " kroner idag.");
       }
     }
