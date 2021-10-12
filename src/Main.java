@@ -3,14 +3,15 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
-  ArrayList<Pizza> menuKort = new ArrayList<>();
-  ArrayList <Pizza> bestillinger = new ArrayList<>();
-  ArrayList <Pizza> totalOrdre = new ArrayList<>();
+  ArrayList <Pizza> menuKort = new ArrayList<>();
+  ArrayList <Object> bestillinger = new ArrayList<>();
+  ArrayList <Object> totalOrdre = new ArrayList<>();
   Boolean programIsRunning = true;
   Scanner scanner = new Scanner(System.in);
   int pristotal;
   int regnskab;
   int i = 1;
+  String h;
 
 
 public void lavPizza(){
@@ -63,13 +64,14 @@ public void tagImodBestilling(){
       if (stringInput.equalsIgnoreCase("slut")) {
         System.out.println("\n\nOrdren er slut, den har fået ordrenummer: " + i);
         System.out.println("Ordre nummer " + i + " indeholder: ");
-      for (Pizza a : bestillinger) {
+      for (Object a : bestillinger) {
         System.out.println(a);
       }
         System.out.println("ialt pris: " + pristotal + " kroner.");
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Date date = new Date();
-        System.out.println("Bestilling modtaget " + dateFormat.format(date));
+        h = dateFormat.format(date);
+        System.out.println("Bestilling modtaget " + h);
         gemBestillinger(bestillinger);
         bestillinger.clear();
         pristotal = 0;
@@ -79,7 +81,7 @@ public void tagImodBestilling(){
         System.out.println("I dag er der i alt blevet solgt pizza for: " + regnskab + " kroner'");
       }
       if (stringInput.equalsIgnoreCase("total")){
-        for (Pizza s : totalOrdre)
+        for (Object s : totalOrdre)
           System.out.println(s);
       }
     }
@@ -100,7 +102,8 @@ public void tagImodBestilling(){
   while(pizzaNummer < 34 && pizzaNummer > 0);
 }
 
-public void gemBestillinger(ArrayList<Pizza> pizza){
+public void gemBestillinger(ArrayList<Object> pizza){
+  totalOrdre.add(new Mellemrum("\nOrdrenummer: " + i + "    bestilt klokken: " + h));
   totalOrdre.addAll(pizza);
 }
 
