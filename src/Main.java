@@ -6,6 +6,7 @@ public class Main {
   ArrayList <Pizza> menuKort = new ArrayList<>();
   ArrayList <Object> bestillinger = new ArrayList<>();
   ArrayList <Object> totalOrdre = new ArrayList<>();
+  ArrayList <Integer> pizzaKanFjernes = new ArrayList<>();
   Boolean programIsRunning = true;
   Scanner scanner = new Scanner(System.in);
   int pristotal;
@@ -57,16 +58,16 @@ public void tagImodBestilling(){
   int pizzaNummer = 0;
 
   do {
-    while(!scanner.hasNextInt()){
+    while(!scanner.hasNextInt()) {
       String stringInput = scanner.nextLine();
       if (stringInput.equalsIgnoreCase("menukort"))
         printMenukort();
       if (stringInput.equalsIgnoreCase("slut")) {
         System.out.println("\n\nOrdren er slut, den har fået ordrenummer: " + i);
         System.out.println("Ordre nummer " + i + " indeholder: ");
-      for (Object a : bestillinger) {
-        System.out.println(a);
-      }
+        for (Object a : bestillinger) {
+          System.out.println(a);
+        }
         System.out.println("ialt pris: " + pristotal + " kroner.");
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Date date = new Date();
@@ -77,12 +78,20 @@ public void tagImodBestilling(){
         pristotal = 0;
         i++;
       }
-      if (stringInput.equalsIgnoreCase("regnskab")){
+      if (stringInput.equalsIgnoreCase("regnskab")) {
         System.out.println("I dag er der i alt blevet solgt pizza for: " + regnskab + " kroner'");
       }
-      if (stringInput.equalsIgnoreCase("total")){
+      if (stringInput.equalsIgnoreCase("total")) {
         for (Object s : totalOrdre)
           System.out.println(s);
+      }
+      if (stringInput.equalsIgnoreCase("Alfonso")) {
+        System.out.println("Ja chef, skal jeg fjerne den første pizza på listen? "+pizzaKanFjernes);
+        String svar = scanner.nextLine();
+        if (svar.equalsIgnoreCase("Ja")) {
+          pizzaKanFjernes.remove(0);
+          System.out.println("Pizzaen er fjernet! " + pizzaKanFjernes);
+        }
       }
     }
     if(scanner.hasNextInt()) {
@@ -91,6 +100,7 @@ public void tagImodBestilling(){
     if (pizzaNummer < 34 && pizzaNummer > 0) {
       System.out.println(menuKort.get(pizzaNummer - 1));
       bestillinger.add(menuKort.get(pizzaNummer - 1));
+      pizzaKanFjernes.add(pizzaNummer);
       pristotal += menuKort.get(pizzaNummer - 1).pris;
       regnskab += menuKort.get(pizzaNummer - 1).pris;
       System.out.print("indtast nummeret på næste pizza, indtast slut for at afslutte ordren: ");
