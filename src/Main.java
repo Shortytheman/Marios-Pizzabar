@@ -6,12 +6,14 @@ public class Main {
   ArrayList <Pizza> menuKort = new ArrayList<>();
   ArrayList <Object> bestillinger = new ArrayList<>();
   ArrayList <Object> totalOrdre = new ArrayList<>();
+  ArrayList <Integer> stat = new ArrayList<>();
   Boolean programIsRunning = true;
   Scanner scanner = new Scanner(System.in);
   int pristotal;
   int regnskab;
   int i = 1;
   String h;
+
 
 
 public void lavPizza(){
@@ -59,30 +61,36 @@ public void tagImodBestilling(){
   do {
     while(!scanner.hasNextInt()){
       String stringInput = scanner.nextLine();
-      if (stringInput.equalsIgnoreCase("menukort"))
+      if (stringInput.equalsIgnoreCase("menukort")) {
         printMenukort();
+      }
       if (stringInput.equalsIgnoreCase("slut")) {
-        System.out.println("\n\nOrdren er slut, den har fået ordrenummer: " + i);
-        System.out.println("Ordre nummer " + i + " indeholder: ");
-      for (Object a : bestillinger) {
-        System.out.println(a);
+          System.out.println("\n\nOrdren er slut, den har fået ordrenummer: " + i);
+          System.out.println("Ordre nummer " + i + " indeholder: ");
+        for (Object a : bestillinger) {
+          System.out.println(a);
+        }
+          System.out.println("pris i alt: " + pristotal + " kroner.");
+          DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+          Date date = new Date();
+          h = dateFormat.format(date);
+          System.out.println("Bestilling modtaget " + h);
+          gemBestillinger(bestillinger);
+
+          bestillinger.clear();
+          pristotal = 0;
+          i++;
       }
-        System.out.println("ialt pris: " + pristotal + " kroner.");
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-        Date date = new Date();
-        h = dateFormat.format(date);
-        System.out.println("Bestilling modtaget " + h);
-        gemBestillinger(bestillinger);
-        bestillinger.clear();
-        pristotal = 0;
-        i++;
+      if (stringInput.equalsIgnoreCase("statistik")) {
+        printStatistik();
+
+        System.out.println("\nI dag er der i alt blevet solgt pizza for: " + regnskab + " kroner'");
       }
-      if (stringInput.equalsIgnoreCase("regnskab")){
-        System.out.println("I dag er der i alt blevet solgt pizza for: " + regnskab + " kroner'");
-      }
-      if (stringInput.equalsIgnoreCase("total")){
-        for (Object s : totalOrdre)
+
+      if (stringInput.equalsIgnoreCase("total")) {
+        for (Object s : totalOrdre) {
           System.out.println(s);
+        }
       }
     }
     if(scanner.hasNextInt()) {
@@ -93,6 +101,7 @@ public void tagImodBestilling(){
       bestillinger.add(menuKort.get(pizzaNummer - 1));
       pristotal += menuKort.get(pizzaNummer - 1).pris;
       regnskab += menuKort.get(pizzaNummer - 1).pris;
+      stat.add(menuKort.get(pizzaNummer - 1).nummer);
       System.out.print("indtast nummeret på næste pizza, indtast slut for at afslutte ordren: ");
     }
     else {
@@ -113,12 +122,20 @@ public void printMenukort(){
   }
 }
 
+public void printStatistik() {
+
+  for(int i = 1; i < 34; i++) {
+        System.out.print("Pizza " + i + ": ");
+        System.out.println(Collections.frequency(stat, i));
+      }
+    }
+
 public static void main(String[] args){
   Main main = new Main();
   main.lavPizza();
 
   while (main.programIsRunning) {
     main.tagImodBestilling();
-  }
+    }
   }
 }
