@@ -7,6 +7,7 @@ public class Main {
   ArrayList <Pizza> menuKort = new ArrayList<>();
   ArrayList <Object> bestillinger = new ArrayList<>();
   ArrayList <Object> totalOrdre = new ArrayList<>();
+  ArrayList <Integer> pizzaKanFjernes = new ArrayList<>();
   ArrayList <Integer> stat = new ArrayList<>();
   Boolean programIsRunning = true;
   Scanner scanner = new Scanner(System.in);
@@ -14,6 +15,7 @@ public class Main {
   int regnskab;
   int i = 1;
   String h;
+
 
 
 public void lavPizza(){
@@ -95,6 +97,13 @@ public void tagImodBestilling(){
       if (stringInput.equalsIgnoreCase("total")) {
         for (Object s : totalOrdre) {
           System.out.println(s);
+      }
+      if (stringInput.equalsIgnoreCase("Alfonso")) {
+        System.out.println("Ja chef, hvilken pizza skal jeg fjerne fra listen? "+pizzaKanFjernes);
+        int svar = scanner.nextInt();
+        if (svar == pizzaNummer) {
+          pizzaKanFjernes.remove(Integer.valueOf(svar));
+          System.out.println("Pizzaen er fjernet! " + pizzaKanFjernes);
         }
       }
     }
@@ -104,6 +113,7 @@ public void tagImodBestilling(){
     if (pizzaNummer < 34 && pizzaNummer > 0) {
       System.out.println(menuKort.get(pizzaNummer - 1));
       bestillinger.add(menuKort.get(pizzaNummer - 1));
+      pizzaKanFjernes.add(pizzaNummer);
       pristotal += menuKort.get(pizzaNummer - 1).pris;
       regnskab += menuKort.get(pizzaNummer - 1).pris;
       stat.add(menuKort.get(pizzaNummer - 1).nummer);
