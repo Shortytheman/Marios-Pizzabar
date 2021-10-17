@@ -16,8 +16,6 @@ public class Main {
   int i = 1;
   String h;
 
-
-
 public void lavPizza(){
   //Vi laver instanser af Pizza objektet og adder nummer, navn, liste med ingredienser og en pris.
   menuKort.add(new Pizza(1,"Vesuvio",new String[]{"Tomatsauce","Ost", "Skinke", "Oregano"},57));
@@ -63,7 +61,7 @@ public void tagImodBestilling(){
 
 //Vi looper indtil brugeren indtaster et nummer fra 1 til 33
   do {
-    while(!scanner.hasNextInt()){
+    while(!scanner.hasNextInt()) {
       // Når brugeren ikke indtaster en int går vi i dette loop
       String stringInput = scanner.nextLine();
       if (stringInput.equalsIgnoreCase("menukort")) {
@@ -73,10 +71,10 @@ public void tagImodBestilling(){
         //Når brugeren indtaster "slut" så afsluttes den nuværende ordre og der printes detaljer.
         System.out.println("\n\nOrdren er slut, den har fået ordrenummer: " + i);
         System.out.println("Ordre nummer " + i + " indeholder: ");
-      for (Object a : bestillinger) {
-        //Printer ArrayList med newline
-        System.out.println(a);
-      }
+        for (Object a : bestillinger) {
+          //Printer ArrayList med newline
+          System.out.println(a);
+        }
         System.out.println("ialt pris: " + pristotal + " kroner.");
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Date date = new Date();
@@ -89,24 +87,28 @@ public void tagImodBestilling(){
         i++;
       }
       if (stringInput.equalsIgnoreCase("statistik")) {
+        System.out.println("Daglig antal solgte pizzaer, sorteret efter nummer.");
         printStatistik();
-
         System.out.println("\nI dag er der i alt blevet solgt pizza for: " + regnskab + " kroner");
       }
 
       if (stringInput.equalsIgnoreCase("total")) {
         for (Object s : totalOrdre) {
           System.out.println(s);
-      }
-      if (stringInput.equalsIgnoreCase("Alfonso")) {
-        System.out.println("Ja chef, hvilken pizza skal jeg fjerne fra listen? "+pizzaKanFjernes);
-        int svar = scanner.nextInt();
-        if (svar == pizzaNummer) {
-          pizzaKanFjernes.remove(Integer.valueOf(svar));
-          System.out.println("Pizzaen er fjernet! " + pizzaKanFjernes);
         }
       }
+      if (stringInput.equalsIgnoreCase("Alfonso")) {
+        System.out.println("Ja chef, hvilken pizza skal jeg fjerne fra listen? " + pizzaKanFjernes);
+        if (scanner.hasNextInt()) {
+          int svar = scanner.nextInt();
+          if (svar > 1 || svar < pizzaKanFjernes.size()) {
+            pizzaKanFjernes.remove(Integer.valueOf(svar));
+            System.out.println("Pizzaen er fjernet! " + pizzaKanFjernes);
+          }
+        } else System.out.println("Det findes ikke på listen chef..");
+      }
     }
+
     if(scanner.hasNextInt()) {
       pizzaNummer = scanner.nextInt();
     }
