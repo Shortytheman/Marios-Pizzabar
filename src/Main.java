@@ -86,10 +86,10 @@ public void tagImodBestilling(){
           System.out.println(s);
       }
       if (stringInput.equalsIgnoreCase("Alfonso")) {
-        System.out.println("Ja chef, skal jeg fjerne den første pizza på listen? "+pizzaKanFjernes);
-        String svar = scanner.nextLine();
-        if (svar.equalsIgnoreCase("Ja")) {
-          pizzaKanFjernes.remove(0);
+        System.out.println("Ja chef, hvilken pizza skal jeg fjerne fra listen? "+pizzaKanFjernes);
+        int svar = scanner.nextInt();
+        if (svar == pizzaNummer) {
+          pizzaKanFjernes.remove(Integer.valueOf(svar));
           System.out.println("Pizzaen er fjernet! " + pizzaKanFjernes);
         }
       }
