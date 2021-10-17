@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Pizza {
+public class Pizza{
 
   int nummer;
   String navn;

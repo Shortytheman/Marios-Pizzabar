@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -15,8 +16,8 @@ public class Main {
   String h;
 
 
-
 public void lavPizza(){
+  //Vi laver instanser af Pizza objektet og adder nummer, navn, liste med ingredienser og en pris.
   menuKort.add(new Pizza(1,"Vesuvio",new String[]{"Tomatsauce","Ost", "Skinke", "Oregano"},57));
   menuKort.add(new Pizza(2,"Amerikaner",new String[]{"Tomatsauce","Ost", "Oksefars", "Oregano"},53));
   menuKort.add(new Pizza(3,"Cacciatore",new String[]{"Tomatsauce","Ost", "Pepperoni", "Oregano"},57));
@@ -58,33 +59,37 @@ public void tagImodBestilling(){
   System.out.println("Indtast nummeret på den pizza der bliver bestilt: ");
   int pizzaNummer = 0;
 
+//Vi looper indtil brugeren indtaster et nummer fra 1 til 33
   do {
     while(!scanner.hasNextInt()){
+      // Når brugeren ikke indtaster en int går vi i dette loop
       String stringInput = scanner.nextLine();
       if (stringInput.equalsIgnoreCase("menukort")) {
         printMenukort();
       }
       if (stringInput.equalsIgnoreCase("slut")) {
-          System.out.println("\n\nOrdren er slut, den har fået ordrenummer: " + i);
-          System.out.println("Ordre nummer " + i + " indeholder: ");
-        for (Object a : bestillinger) {
-          System.out.println(a);
-        }
-          System.out.println("pris i alt: " + pristotal + " kroner.");
-          DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-          Date date = new Date();
-          h = dateFormat.format(date);
-          System.out.println("Bestilling modtaget " + h);
-          gemBestillinger(bestillinger);
-
-          bestillinger.clear();
-          pristotal = 0;
-          i++;
+        //Når brugeren indtaster "slut" så afsluttes den nuværende ordre og der printes detaljer.
+        System.out.println("\n\nOrdren er slut, den har fået ordrenummer: " + i);
+        System.out.println("Ordre nummer " + i + " indeholder: ");
+      for (Object a : bestillinger) {
+        //Printer ArrayList med newline
+        System.out.println(a);
+      }
+        System.out.println("ialt pris: " + pristotal + " kroner.");
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        Date date = new Date();
+        h = dateFormat.format(date);
+        System.out.println("Bestilling modtaget " + h);
+        gemBestillinger(bestillinger);
+        stat.add(menuKort.get(pizzaNummer - 1).nummer);
+        bestillinger.clear();
+        pristotal = 0;
+        i++;
       }
       if (stringInput.equalsIgnoreCase("statistik")) {
         printStatistik();
 
-        System.out.println("\nI dag er der i alt blevet solgt pizza for: " + regnskab + " kroner'");
+        System.out.println("\nI dag er der i alt blevet solgt pizza for: " + regnskab + " kroner");
       }
 
       if (stringInput.equalsIgnoreCase("total")) {
