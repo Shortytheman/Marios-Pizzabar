@@ -76,14 +76,12 @@ public void tagImodBestilling(){
           h = dateFormat.format(date);
           System.out.println("Bestilling modtaget " + h);
           gemBestillinger(bestillinger);
-
           bestillinger.clear();
           pristotal = 0;
           i++;
       }
       if (stringInput.equalsIgnoreCase("statistik")) {
         printStatistik();
-
         System.out.println("\nI dag er der i alt blevet solgt pizza for: " + regnskab + " kroner'");
       }
 
@@ -125,10 +123,12 @@ public void printMenukort(){
 public void printStatistik() {
 
   for(int i = 1; i < 34; i++) {
-        System.out.print("Pizza " + i + ": ");
-        System.out.println(Collections.frequency(stat, i));
-      }
+    if (Collections.frequency(stat, i) > 0) {
+      System.out.print("Pizza " + i + ": ");
+      System.out.println(Collections.frequency(stat, i));
     }
+  }
+}
 
 public static void main(String[] args){
   Main main = new Main();
