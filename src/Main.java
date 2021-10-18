@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -6,6 +7,7 @@ public class Main {
   ArrayList <Pizza> menuKort = new ArrayList<>();
   ArrayList <Object> bestillinger = new ArrayList<>();
   ArrayList <Object> totalOrdre = new ArrayList<>();
+  ArrayList <Integer> pizzaKanFjernes = new ArrayList<>();
   ArrayList <Integer> stat = new ArrayList<>();
   Boolean programIsRunning = true;
   Scanner scanner = new Scanner(System.in);
@@ -14,9 +16,8 @@ public class Main {
   int i = 1;
   String h;
 
-
-
 public void lavPizza(){
+  //Vi laver instanser af Pizza objektet og adder nummer, navn, liste med ingredienser og en pris.
   menuKort.add(new Pizza(1,"Vesuvio",new String[]{"Tomatsauce","Ost", "Skinke", "Oregano"},57));
   menuKort.add(new Pizza(2,"Amerikaner",new String[]{"Tomatsauce","Ost", "Oksefars", "Oregano"},53));
   menuKort.add(new Pizza(3,"Cacciatore",new String[]{"Tomatsauce","Ost", "Pepperoni", "Oregano"},57));
@@ -58,29 +59,34 @@ public void tagImodBestilling(){
   System.out.println("Indtast nummeret på den pizza der bliver bestilt: ");
   int pizzaNummer = 0;
 
+//Vi looper indtil brugeren indtaster et nummer fra 1 til 33
   do {
-    while(!scanner.hasNextInt()){
+    while(!scanner.hasNextInt()) {
+      // Når brugeren ikke indtaster en int går vi i dette loop
       String stringInput = scanner.nextLine();
       if (stringInput.equalsIgnoreCase("menukort")) {
         printMenukort();
       }
       if (stringInput.equalsIgnoreCase("slut")) {
-          System.out.println("\n\nOrdren er slut, den har fået ordrenummer: " + i);
-          System.out.println("Ordre nummer " + i + " indeholder: ");
+        //Når brugeren indtaster "slut" så afsluttes den nuværende ordre og der printes detaljer.
+        System.out.println("\n\nOrdren er slut, den har fået ordrenummer: " + i);
+        System.out.println("Ordre nummer " + i + " indeholder: ");
         for (Object a : bestillinger) {
+          //Printer ArrayList med newline
           System.out.println(a);
         }
-          System.out.println("pris i alt: " + pristotal + " kroner.");
-          DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-          Date date = new Date();
-          h = dateFormat.format(date);
-          System.out.println("Bestilling modtaget " + h);
-          gemBestillinger(bestillinger);
-          bestillinger.clear();
-          pristotal = 0;
-          i++;
+        System.out.println("pris i alt: " + pristotal + " kroner.");
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        Date date = new Date();
+        h = dateFormat.format(date);
+        System.out.println("Bestilling modtaget " + h);
+        gemBestillinger(bestillinger);
+        bestillinger.clear();
+        pristotal = 0;
+        i++;
       }
       if (stringInput.equalsIgnoreCase("statistik")) {
+        System.out.println("Daglig antal solgte pizzaer, sorteret efter nummer.");
         printStatistik();
         System.out.println("\nI dag er der i alt blevet solgt pizza for: " + regnskab + " kroner'");
       }
@@ -90,13 +96,25 @@ public void tagImodBestilling(){
           System.out.println(s);
         }
       }
+      if (stringInput.equalsIgnoreCase("Alfonso")) {
+        System.out.println("Ja chef, hvilken pizza skal jeg fjerne fra listen? " + pizzaKanFjernes);
+        if (scanner.hasNextInt()) {
+          int svar = scanner.nextInt();
+          if (svar > 1 || svar < pizzaKanFjernes.size()) {
+            pizzaKanFjernes.remove(Integer.valueOf(svar));
+            System.out.println("Pizzaen er fjernet! " + pizzaKanFjernes);
+          }
+        } else System.out.println("Det findes ikke på listen chef..");
+      }
     }
+
     if(scanner.hasNextInt()) {
       pizzaNummer = scanner.nextInt();
     }
     if (pizzaNummer < 34 && pizzaNummer > 0) {
       System.out.println(menuKort.get(pizzaNummer - 1));
       bestillinger.add(menuKort.get(pizzaNummer - 1));
+      pizzaKanFjernes.add(pizzaNummer);
       pristotal += menuKort.get(pizzaNummer - 1).pris;
       regnskab += menuKort.get(pizzaNummer - 1).pris;
       stat.add(menuKort.get(pizzaNummer - 1).nummer);
