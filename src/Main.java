@@ -86,12 +86,14 @@ public void tagImodBestilling(){
         i++;
       }
       if (stringInput.equalsIgnoreCase("statistik")) {
+        // Printer en liste over hvor mange gange en specifik pizza er blevet solgt.
         System.out.println("Daglig antal solgte pizzaer, sorteret efter nummer.");
         printStatistik();
         System.out.println("\nI dag er der i alt blevet solgt pizza for: " + regnskab + " kroner'");
       }
 
       if (stringInput.equalsIgnoreCase("total")) {
+        // Printer en liste med alle ordre for dagen
         for (Object s : totalOrdre) {
           System.out.println(s);
         }
@@ -105,6 +107,9 @@ public void tagImodBestilling(){
             System.out.println("Pizzaen er fjernet! " + pizzaKanFjernes);
           }
         } else System.out.println("Det findes ikke på listen chef..");
+      }
+      if (stringInput.equalsIgnoreCase("fjern")) {
+        System.out.println("Ordre nummer: " + " er fjernet");
       }
     }
 
@@ -139,10 +144,13 @@ public void printMenukort(){
 }
 
 public void printStatistik() {
-
+  // Looper igennem tallene fra 1-33
   for(int i = 1; i < 34; i++) {
+    // Kontrollerer at pizzaer som ikke er blevet solgt, IKKE bliver printet
     if (Collections.frequency(stat, i) > 0) {
+      // Printer pizza nummer 1-33
       System.out.print("Pizza " + i + ": ");
+      // Finder hvor mange af hver pizza der er solgt fra ArrayList stat
       System.out.println(Collections.frequency(stat, i));
     }
   }
